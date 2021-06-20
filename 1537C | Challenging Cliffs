@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define     FasterIO        ios_base::sync_with_stdio(0);cin.tie(0);cout.tie(0);
+#define     bug(a,b)        cout<<a<<"\t"<<b<<"\n";
+#define     Case(a,b)       cout<<"Case "<<a<<": "<<b<<"\n";
+#define     precision(a,b)  fixed<<setprecision(a)<<b
+#define     lp(i,a,b)       for(int i=a;i<b;i++)
+#define     Endl            "\n"
+#define     tab             "\t"
+#define     reset(a,b)      memset(a,b,sizeof(a));
+#define     sf(a)           scanf(" %d", &a);
+#define     sfl(a)          scanf(" %lld", &a);
+#define     srt(a)          sort(a.begin(),a.end());
+#define     ALL(a)          a.begin(),a.end()
+#define     pb(a)           push_back(a)
+#define     pi              2*acos(0.0)
+#define     yes             cout<<"YES\n";
+#define     no              cout<<"NO\n";
+#define     print2d(a,b,c)  for(int i =0; i <a; i++){for (int j = 0; j < b; j++){cout << c[i][j] << " ";}cout << "\n";}
+#define     printAr(a,b)    for(int i =0; i <a; i++){cout<<b[i]<<" ";}cout << "\n";
+
+
+typedef long long int ll;
+typedef unsigned long long int ull;
+
+const int sz = 1e5 + 9 , LOG = 20, infP = INT_MAX , infN = INT_MIN , mod = 1e9 + 7, eps = 1e-9;
+
+/*--------------------------------------------------------------------------------------------------------------------------------*/
+
+void solve() {
+    ll n, l, r, dif = 10e15, x;
+
+    cin >> n;
+
+    ll heights[n];
+
+    for (auto &i : heights)cin >> i;
+
+    sort(heights, heights + n);
+
+    if (n == 2) {
+        for (auto &i : heights)cout << i << " ";
+        cout << Endl;
+        return;
+    }
+
+    for (int i = 1; i < n; i++) {
+        if (dif > (heights[i] - heights[i - 1])) {
+            dif = heights[i] - heights[i - 1], l = i;
+        }
+    }
+
+
+    for (int i = 0; i < n; i++, l = (l + 1) % n) {
+        cout << heights[l] << " ";
+    }
+    cout << Endl;
+
+}
+
+int main() {
+    FasterIO;
+#ifndef ONLINE_JUDGE
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+#endif
+    int t = 1;
+    cin >> t;
+    while (t--)
+        solve();
+}
